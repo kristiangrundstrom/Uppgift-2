@@ -1,6 +1,7 @@
 package uppgift2Test;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -14,14 +15,15 @@ public class CustomerTest {
 
 @Test
     public void hasCustomerActiveMembership() {
-        //Customer customer = new Customer("Nahema", "Ninsson", "7805211234", LocalDate("2018-01-04"),true, false, List<WorkoutHistoryTest>);
-        //TestCase.assertTrue(customer.getActiveMembership());
+        Customer customer = new Customer("Nahema", "Ninsson", "7805211234", LocalDate.of(2018, 01, 04), true, false);
+        TestCase.assertTrue(customer.getActiveMembership());
+        
+        Customer customer2 = new Customer("Ture", "Sventon", "0123456789", LocalDate.of(2000, 01, 12), false, false);
+        TestCase.assertFalse(customer2.getActiveMembership());
+        
     }
-    
-    /*
-    7805211234, Nahema Ninsson
-2018-01-04
-    */
+
+   
 
 }
 

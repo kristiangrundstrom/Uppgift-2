@@ -24,15 +24,12 @@ public class Search {
     private Period period;
     private Customer customer;
     private final Path customerTextFilePath = Paths.get("src/uppgift2/customers.txt");
+    private final Path filePath = Paths.get("src/uppgift2/workoutHistory.txt");
     private boolean activeMembership = false;
     private boolean previousMembership = true;
     private boolean searchWithId = true;
     
     
-    public Search() {
-
-    }
-
     public Customer isCurrentOrPreviousCustomer(String firstName, String lastName, String personalIdNumber) throws IOException, ParseException, NullPointerException {
         
         searchWithId = !personalIdNumber.equals("");
@@ -57,24 +54,16 @@ public class Search {
                         previousMembership = false;
                     }
 
-                    if (searchWithId) {
-
-                        firstName = nameArr[0].substring(0, 1).toUpperCase() + nameArr[0].substring(1).toLowerCase();
-                        lastName = nameArr[1].substring(0, 1).toUpperCase() + nameArr[1].substring(1).toLowerCase();
-                    }
-                    
-                    
-                    
+                    firstName = nameArr[0].substring(0, 1).toUpperCase() + nameArr[0].substring(1).toLowerCase();
+                    lastName = nameArr[1].substring(0, 1).toUpperCase() + nameArr[1].substring(1).toLowerCase();
                     customer = new Customer(firstName, lastName, idAndNameArray[0], dateOfMembershipPurchase, activeMembership, previousMembership);
-                    
-                    Path payingCustomerFilePath = Paths.get("src/uppgift2/" + idAndNameArray[1] + ".txt");
-
-                    if (!Files.exists(payingCustomerFilePath)) {
-                        Files.createFile(payingCustomerFilePath);
+                   
+                    if (!Files.exists(filePath)) {
+                        Files.createFile(filePath);
                     }
 
                     try (
-                        BufferedWriter writeWorkoutHistoryToFile = Files.newBufferedWriter(payingCustomerFilePath, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
+                        BufferedWriter writeWorkoutHistoryToFile = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
                         writeWorkoutHistoryToFile.write(customer.getFirstName() + " " + customer.getLastName() + " " + 
                                 customer.getPersonalIdNumber() + " " + now.toString() + "\n");
                         writeWorkoutHistoryToFile.flush();

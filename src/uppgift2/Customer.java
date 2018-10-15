@@ -60,15 +60,17 @@ public class Customer {
         return previousMembership;
     }
 
-    public List<String> getWorkoutHistory() throws IOException, NullPointerException {
+    public List<String> getWorkoutHistory() throws IOException {
 
-        Path filePath = Paths.get("src/uppgift2/" + getFirstName() + " " + getLastName() + ".txt");
-
+        Path filePath = Paths.get("src/uppgift2/workoutHistory.txt");
         try (Scanner sc = new Scanner(filePath)) {
             workoutHistory = new LinkedList<>();
 
             while (sc.hasNextLine()) {
-                workoutHistory.add(sc.nextLine());
+                if(sc.next().equals(firstName) && sc.next().equals(lastName)) {
+                    sc.next(); // Skip personalIdNumber
+                workoutHistory.add(sc.nextLine()); }
+                
             }
         }
         catch (IOException e) {

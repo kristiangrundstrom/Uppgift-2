@@ -20,6 +20,7 @@ public class Uppgift2 {
     private static String data;
     Search search = new Search();
     Customer customer;
+    private List<String> workoutHistory;
 
     public static String input(String message) {
         data = JOptionPane.showInputDialog(message);
@@ -27,11 +28,15 @@ public class Uppgift2 {
             JOptionPane.showMessageDialog(null, "Programmet avbröts!");
             System.exit(0);
         }
+        else if (data.equals("")) {
+            data = JOptionPane.showInputDialog("Tom söksträng. Skriv in namn eller peronsnummer: ");  
+        }
 
         return data.trim().toLowerCase();
     }
 
     public Uppgift2() throws IOException, ParseException, NullPointerException {
+
 
         String indata = input("Välkommen! Ange namn eller personnumer: ");
 
@@ -48,23 +53,26 @@ public class Uppgift2 {
             customer = search.isCurrentOrPreviousCustomer(firstName, lastName, personalIdNumber);
 
             if (customer.getActiveMembership()) {
-                customerInfoMessage = "Kund är en aktiv medlem.\nMedlemsavgift betald: " + customer.getDatePaidMembership();
+                customerInfoMessage = "Kund är en aktiv medlem.\nMedlemsavgift betald: " + customer.getDatePaidMembership() + "\n";
             } else if (customer.getPreviousMembership()) {
-                customerInfoMessage = "Kund har varit medlem tidigare.\nSenast betalada medlemskapsavgift: " + customer.getDatePaidMembership();
+                customerInfoMessage = "Kund har varit medlem tidigare.\nSenast betalada medlemskapsavgift: " + customer.getDatePaidMembership() + "\n";
             }
 
-            JOptionPane.showMessageDialog(null, customerInfoMessage);
+            workoutHistory = customer.getWorkoutHistory();
+            String workoutHistoryMessage = "Träningshistorik för " + customer.getFirstName() + " " + customer.getLastName() + "\n" +
+                    "KundID: " + customer.getPersonalIdNumber() + "\n";
+
+            for (String e : workoutHistory) {
+                workoutHistoryMessage += e + "\n";
+            }
+        
+            JOptionPane.showMessageDialog(null, customerInfoMessage + "\n" + workoutHistoryMessage);
 
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Kund finns inte i registret!");
         }
 
-        List<String> workoutHistory = customer.getWorkoutHistory();
-        System.out.println("Kundens träningshistorik: " + "\n" + "--------------------");
-
-        for (String e : workoutHistory) {
-            System.out.println(e);
-        }
+        
 
     }
 
