@@ -2,9 +2,6 @@ package uppgift2;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,27 +13,9 @@ public class Uppgift2 {
     private String firstName;
     private String lastName;
     private String personalIdNumber;
-    private String customerInfoMessage;
     private static String data;
-    Search search = new Search();
-    Customer customer;
-    private List<String> workoutHistory;
-
-    public static String input(String message) {
-        data = JOptionPane.showInputDialog(message);
-        if (data == null) {
-            JOptionPane.showMessageDialog(null, "Programmet avbröts!");
-            System.exit(0);
-        }
-        else if (data.equals("")) {
-            data = JOptionPane.showInputDialog("Tom söksträng. Skriv in namn eller peronsnummer: ");  
-        }
-
-        return data.trim().toLowerCase();
-    }
 
     public Uppgift2() throws IOException, ParseException, NullPointerException {
-
 
         String indata = input("Välkommen! Ange namn eller personnumer: ");
 
@@ -50,30 +29,33 @@ public class Uppgift2 {
         }
 
         try {
-            customer = search.isCurrentOrPreviousCustomer(firstName, lastName, personalIdNumber);
+            Search search = new Search();
+            Customer customer = search.isCurrentOrPreviousCustomer(firstName, lastName, personalIdNumber);
 
-            if (customer.getActiveMembership()) {
-                customerInfoMessage = "Kund är en aktiv medlem.\nMedlemsavgift betald: " + customer.getDatePaidMembership() + "\n";
-            } else if (customer.getPreviousMembership()) {
-                customerInfoMessage = "Kund har varit medlem tidigare.\nSenast betalada medlemskapsavgift: " + customer.getDatePaidMembership() + "\n";
-            }
+            Workout workout = new Workout();
+            workout.registerWorkout(customer);
 
-            workoutHistory = customer.getWorkoutHistory();
-            String workoutHistoryMessage = "Träningshistorik för " + customer.getFirstName() + " " + customer.getLastName() + "\n" +
-                    "KundID: " + customer.getPersonalIdNumber() + "\n";
-
-            for (String e : workoutHistory) {
-                workoutHistoryMessage += e + "\n";
-            }
-        
-            JOptionPane.showMessageDialog(null, customerInfoMessage + "\n" + workoutHistoryMessage);
+            Membership membership = new Membership();
+            membership.printStatus(customer);
 
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Kund finns inte i registret!");
         }
+    }
 
-        
+    public static String input(String message) throws NullPointerException {
+        try {
+            data = JOptionPane.showInputDialog(message);
 
+            while (data.equals("")) {
+                data = JOptionPane.showInputDialog("Tom söksträng. Skriv in namn eller peronsnummer: ");
+            }
+
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Sökning avbruten. Programmet avslutas.");
+            System.exit(0);
+        }
+        return data.trim().toLowerCase();
     }
 
     public static void main(String[] args) throws IOException, ParseException, NullPointerException {

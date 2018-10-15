@@ -12,13 +12,10 @@ import uppgift2.Search;
  */
 public class SearchTest {
 
-
-@Test
-public void isCurrentOrPreviousCustomer() throws IOException, ParseException{
-    Search search = new Search();
-    TestCase.assertNotNull(search.isCurrentOrPreviousCustomer("Bear", "Belle", ""));
-    TestCase.assertNull(search.isCurrentOrPreviousCustomer("Blahablah", "Andersson", "55"));
+    @Test
+    public void isCurrentOrPreviousCustomer() throws IOException, ParseException {
+        Search search = new Search();
+        TestCase.assertNotNull(search.isCurrentOrPreviousCustomer("Bear", "Belle", ""));
+        TestCase.assertNull(search.isCurrentOrPreviousCustomer("Blahablah", "Andersson", "55"));
+    }
 }
-}
-
-
