@@ -28,6 +28,11 @@ public class Uppgift2 {
             personalIdNumber = indata;
         }
 
+
+
+// comment test
+
+
         try {
             Search search = new Search();
             Customer customer = search.isCurrentOrPreviousCustomer(firstName, lastName, personalIdNumber);
