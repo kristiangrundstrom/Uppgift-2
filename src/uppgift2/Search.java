@@ -59,7 +59,11 @@ public class Search {
         } catch (IOException e) {
             System.out.println("Ingen fil hittad!");
             System.exit(0);
+        } catch (Exception e) {
+            System.out.println("Okänt fel inträffat!");
+            System.exit(0);
         }
+        
 
         return null;
     }

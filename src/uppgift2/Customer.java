@@ -30,7 +30,6 @@ public class Customer {
         this.datePaidMembership = datePaidMembership;
         this.activeMembership = activeMembership;
         this.previousMembership = previousMembership;
-
     }
 
     public Customer(Customer currentOrPreviousCustomer) {
@@ -67,13 +66,13 @@ public class Customer {
             workoutHistory = new LinkedList<>();
 
             while (sc.hasNextLine()) {
-                if(sc.next().equals(firstName) && sc.next().equals(lastName)) {
+                if (sc.next().equals(firstName) && sc.next().equals(lastName)) {
                     sc.next(); // Skip personalIdNumber
-                workoutHistory.add(sc.nextLine()); }
-                
+                    workoutHistory.add(sc.nextLine());
+                }
+
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Fel på fil med kunds träningshistorik!");
         }
 

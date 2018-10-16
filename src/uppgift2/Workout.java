@@ -16,10 +16,7 @@ import java.time.format.DateTimeFormatter;
  * @author krist
  */
 public class Workout {
-        private final Path filePath = Paths.get("src/uppgift2/workoutHistory.txt");
-        
-    public Workout() {
-    }
+    private final Path filePath = Paths.get("src/uppgift2/workoutHistory.txt");
     
     public void registerWorkout(Customer customer) throws IOException { 
         if (!Files.exists(filePath)) {

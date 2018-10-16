@@ -16,7 +16,6 @@ public class Uppgift2 {
     private static String data;
 
     public Uppgift2() throws IOException, ParseException, NullPointerException {
-
         String indata = input("Välkommen! Ange namn eller personnumer: ");
 
         if (indata.contains(" ")) {
@@ -27,11 +26,6 @@ public class Uppgift2 {
         } else {
             personalIdNumber = indata;
         }
-
-
-
-// comment test
-
 
         try {
             Search search = new Search();

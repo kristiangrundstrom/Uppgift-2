@@ -13,7 +13,7 @@ import uppgift2.Search;
 public class SearchTest {
 
     @Test
-    public void isCurrentOrPreviousCustomer() throws IOException, ParseException {
+    public void isCurrentOrPreviousCustomer() throws IOException, ParseException, NullPointerException {
         Search search = new Search();
         TestCase.assertNotNull(search.isCurrentOrPreviousCustomer("Bear", "Belle", ""));
         TestCase.assertNull(search.isCurrentOrPreviousCustomer("Blahablah", "Andersson", "55"));

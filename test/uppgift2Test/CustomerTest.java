@@ -14,7 +14,7 @@ import uppgift2.Customer;
 public class CustomerTest {
 
 @Test
-    public void hasCustomerActiveMembership() {
+    public void isEntryARealCustomerWithAnActiveMembership() {
         Customer customer = new Customer("Nahema", "Ninsson", "7805211234", LocalDate.of(2018, 01, 04), true, false);
         TestCase.assertTrue(customer.getActiveMembership());
         
