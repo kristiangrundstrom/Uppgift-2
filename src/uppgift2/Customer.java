@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -59,7 +60,7 @@ public class Customer {
         return previousMembership;
     }
 
-    public List<String> getWorkoutHistory() throws IOException {
+    public List<String> getWorkoutHistory() throws IOException, NoSuchElementException, NullPointerException {
 
         Path filePath = Paths.get("src/uppgift2/workoutHistory.txt");
         try (Scanner sc = new Scanner(filePath)) {
@@ -70,10 +71,10 @@ public class Customer {
                     sc.next(); // Skip personalIdNumber
                     workoutHistory.add(sc.nextLine());
                 }
-
             }
+
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Fel på fil med kunds träningshistorik!");
+            JOptionPane.showMessageDialog(null, "Fel på fil med träningshistoriken!");
         }
 
         return workoutHistory;

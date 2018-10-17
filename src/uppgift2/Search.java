@@ -13,14 +13,15 @@ import javax.swing.JOptionPane;
  * @author krist
  */
 public class Search {
-    private final Path customerTextFilePath = Paths.get("src/uppgift2/customers.txt");
-    
-    public Customer isCurrentOrPreviousCustomer(String firstName, String lastName, String personalIdNumber) throws IOException, ParseException, NullPointerException {
+
+    private final Path allCustomersList = Paths.get("src/uppgift2/customers.txt");
+
+    public Customer isCustomerRegisteredMember(String firstName, String lastName, String personalIdNumber) throws IOException, ParseException, NullPointerException {
         boolean searchWithId = !personalIdNumber.equals("");
         boolean activeMembership = false;
         boolean previousMembership = true;
-        
-        try (Scanner sc = new Scanner(customerTextFilePath);) {
+
+        try (Scanner sc = new Scanner(allCustomersList);) {
 
             while (sc.hasNext()) {
                 String[] idAndNameArray = sc.nextLine().trim().split(", ");
@@ -43,30 +44,29 @@ public class Search {
                     firstName = nameArr[0].substring(0, 1).toUpperCase() + nameArr[0].substring(1).toLowerCase();
                     lastName = nameArr[1].substring(0, 1).toUpperCase() + nameArr[1].substring(1).toLowerCase();
                     Customer customer = new Customer(firstName, lastName, idAndNameArray[0], dateOfMembershipPurchase, activeMembership, previousMembership);
-  
+
                     return customer;
                 }
             }
 
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null,"Tom söksträng.");
+            JOptionPane.showMessageDialog(null, "Tom söksträng.");
             System.exit(0);
 
         } catch (NoSuchElementException e) {
             System.out.println("Tom rad i fil hittad!");
             System.exit(0);
-        
+
         } catch (IOException e) {
             System.out.println("Ingen fil hittad!");
             System.exit(0);
+
         } catch (Exception e) {
             System.out.println("Okänt fel inträffat!");
             System.exit(0);
         }
-        
 
         return null;
     }
-    
+
 }
-    

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class Membership {
 
-    public void printStatus(Customer customer) throws IOException {
+    public String workoutHistoryAsMessage(Customer customer) throws IOException {
         String customerInfoMessage = "";
 
         if (customer.getActiveMembership()) {
@@ -30,8 +30,7 @@ public class Membership {
         for (String e : workoutHistory) {
             workoutHistoryMessage += e + "\n";
         }
-
-        JOptionPane.showMessageDialog(null, customerInfoMessage + "\n" + workoutHistoryMessage);
+        return customerInfoMessage + "\n" + workoutHistoryMessage;
     }
 
 }

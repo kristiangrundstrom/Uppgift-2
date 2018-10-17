@@ -27,15 +27,15 @@ public class Uppgift2 {
             personalIdNumber = indata;
         }
 
-        try {
+        try {           
             Search search = new Search();
-            Customer customer = search.isCurrentOrPreviousCustomer(firstName, lastName, personalIdNumber);
+            Customer customer = search.isCustomerRegisteredMember(firstName, lastName, personalIdNumber);
 
             Workout workout = new Workout();
             workout.registerWorkout(customer);
 
             Membership membership = new Membership();
-            membership.printStatus(customer);
+            JOptionPane.showMessageDialog(null,membership.workoutHistoryAsMessage(customer));
 
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Kund finns inte i registret!");
