@@ -29,13 +29,17 @@ public class Membership {
             }
         }
         catch (IOException e) {
-            System.out.println("error.");
+            System.out.println("Något fel med filen inträffade.");
         }
         
        return false;
    }
 
     public String workoutHistoryAsMessage(Customer customer) throws IOException {
+        if (!hasMembershipWorkoutHistory(customer)) {
+            return "Kund har ingen träningshistorik.";
+        }
+        
         String customerInfoMessage = "";
 
         if (customer.getActiveMembership()) {
@@ -57,8 +61,6 @@ public class Membership {
         }
         return customerInfoMessage + "\n" + "Träningshistorik: \n" + workoutHistoryMessage;
     }
+        
 
-    private BufferedInputStream BufferedReader(FileReader fileReader) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
