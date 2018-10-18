@@ -18,19 +18,21 @@ import java.time.format.DateTimeFormatter;
 public class Workout {
     private final Path filePath = Paths.get("src/uppgift2/workoutHistory.txt");
     
-    public void registerWorkout(Customer customer) throws IOException { 
+    public boolean registerWorkout(Customer customer) throws IOException { 
         if (!Files.exists(filePath)) {
             Files.createFile(filePath);
         }
 
         try (BufferedWriter writeWorkoutHistoryToFile = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
-            writeWorkoutHistoryToFile.write(customer.getFirstName() + " " + customer.getLastName() + " "
-                    + customer.getPersonalIdNumber() + " " + LocalDate.now() + " " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "\n");
+            writeWorkoutHistoryToFile.write("\n" + customer.getFirstName() + " " + customer.getLastName() + " "
+                    + customer.getPersonalIdNumber() + " " + LocalDate.now() + " " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
             writeWorkoutHistoryToFile.flush();
+            return true;
         }
         catch (IOException e) {
             System.out.println("Problem med filen! Programmet avslutas");
             System.exit(0);
         }   
+        return false;
     }
 }

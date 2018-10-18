@@ -1,7 +1,15 @@
 package uppgift2;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -9,6 +17,23 @@ import javax.swing.JOptionPane;
  * @author krist
  */
 public class Membership {
+    
+   public boolean hasMembershipWorkoutHistory(Customer customer) throws FileNotFoundException, IOException {
+       
+       Path filePath = Paths.get("src/uppgift2/workoutHistory.txt");
+        try (Scanner sc = new Scanner(filePath)) {
+            while(sc.hasNext()) {
+                if (sc.next().equals(customer.getFirstName())) {
+                    return true;
+                }
+            }
+        }
+        catch (IOException e) {
+            System.out.println("error.");
+        }
+        
+       return false;
+   }
 
     public String workoutHistoryAsMessage(Customer customer) throws IOException {
         String customerInfoMessage = "";
@@ -25,12 +50,15 @@ public class Membership {
 
         List<String> workoutHistory;
         workoutHistory = customer.getWorkoutHistory();
-        String workoutHistoryMessage = "Träningshistorik: :\n";
-
+        String workoutHistoryMessage = "";
+        
         for (String e : workoutHistory) {
             workoutHistoryMessage += e + "\n";
         }
-        return customerInfoMessage + "\n" + workoutHistoryMessage;
+        return customerInfoMessage + "\n" + "Träningshistorik: \n" + workoutHistoryMessage;
     }
 
+    private BufferedInputStream BufferedReader(FileReader fileReader) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

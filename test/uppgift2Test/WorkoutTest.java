@@ -2,6 +2,7 @@ package uppgift2Test;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import junit.framework.TestCase;
 import org.junit.Test;
 import uppgift2.Customer;
 import uppgift2.Workout;
@@ -21,7 +22,7 @@ public class WorkoutTest {
         LocalDate localDate = LocalDate.now();
         Customer customer = new Customer(firstName, lastName, personalIdNumber, localDate, false, false);
         
-        workout.registerWorkout(customer);
+        TestCase.assertTrue(workout.registerWorkout(customer));
     }
     
   
