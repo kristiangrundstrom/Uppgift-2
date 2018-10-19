@@ -2,17 +2,10 @@ package uppgift2Test;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.util.NoSuchElementException;
 import junit.framework.TestCase;
 import org.junit.Test;
-import uppgift2.Customer;
 import uppgift2.Search;
 
-/**
- *
- * @author krist
- */
 public class SearchTest {
     
     @Test    

@@ -1,21 +1,12 @@
 package uppgift2;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author krist
- */
 public class Membership {
     
    public boolean hasMembershipWorkoutHistory(Customer customer) throws FileNotFoundException, IOException {
@@ -31,7 +22,6 @@ public class Membership {
         catch (IOException e) {
             System.out.println("Något fel med filen inträffade.");
         }
-        
        return false;
    }
 
@@ -61,6 +51,4 @@ public class Membership {
         }
         return customerInfoMessage + "\n" + "Träningshistorik: \n" + workoutHistoryMessage;
     }
-        
-
 }

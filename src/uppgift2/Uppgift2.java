@@ -61,5 +61,4 @@ public class Uppgift2 {
 
         Uppgift2 bestGymEver = new Uppgift2();
     }
-
 }

@@ -7,10 +7,6 @@ import org.junit.Test;
 import uppgift2.Customer;
 import uppgift2.Workout;
 
-/**
- *
- * @author krist
- */
 public class WorkoutTest {
     
     @Test
@@ -23,8 +19,5 @@ public class WorkoutTest {
         Customer customer = new Customer(firstName, lastName, personalIdNumber, localDate, false, false);
         
         TestCase.assertTrue(workout.registerWorkout(customer));
-    }
-    
-  
-     
+    }    
 }

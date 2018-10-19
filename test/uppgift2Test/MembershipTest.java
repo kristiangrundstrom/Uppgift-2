@@ -2,8 +2,6 @@ package uppgift2Test;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.NoSuchElementException;
-import javax.swing.JOptionPane;
 import junit.framework.TestCase;
 import org.junit.Test;
 import uppgift2.Customer;
